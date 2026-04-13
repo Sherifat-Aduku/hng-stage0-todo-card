@@ -43,5 +43,3 @@ Inline SVGs vs Icon Library: I replaced lucide-react with inline SVGs. This slig
 To ensure the component remains stable and accessible, I included automated unit tests using Vitest and JSDOM.
 
 What is tested: The suite verifies that the card title, priority badge, description, due date, status, tags, checkbox, edit button, and delete button all render correctly with the right content and attributes. This prevents regressions during future styling or logic updates.
-
-Enter "npm test" on the command line to run the tests.
