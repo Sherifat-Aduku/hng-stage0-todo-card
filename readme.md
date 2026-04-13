@@ -37,7 +37,7 @@ Inline SVGs vs Icon Library: I replaced lucide-react with inline SVGs. This slig
 (https://github.com/Sherifat-Aduku/hng-stage0-todo-card.git)
 
 ## Live Link
-(https://hng-sheri-taskflow-card.vercel.app/)
+(https://hng-stage0-taskflow-card.vercel.app/)
 
 ## Basic Test
 To ensure the component remains stable and accessible, I included automated unit tests using Vitest and JSDOM.
