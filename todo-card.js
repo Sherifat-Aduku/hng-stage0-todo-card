@@ -2,7 +2,7 @@ const DUE_DATE = new Date("2026-04-16T18:00:00Z");
 
 // ===== STATE =====
 const state = {
-  status: "Pending",
+  status: "In Progress",
   dueDate: new Date("2026-04-16T18:00:00Z"),
 };
 
@@ -33,7 +33,7 @@ const overdueIndicator = document.getElementById("overdue-indicator");
 
 // Sections to hide/show during edit
 const headerEl    = document.querySelector(".todo-card__header");
-const collapsible = document.getElementById("collapsible-section");
+const collapsibleSection = document.getElementById("collapsible-section");
 const expandToggle = document.getElementById("expand-toggle");
 const datesEl     = document.querySelector(".todo-card__dates");
 const statusRow   = document.querySelector(".todo-card__status-row");
@@ -65,14 +65,16 @@ function getTimeRemaining(due) {
 function render() {
   card.classList.toggle("todo-card--done", state.status === "Done");
 
-  const statusKey = state.status.toLowerCase().replace(" ", "-");
-  statusEl.className = "todo-card__status todo-card__status--" + statusKey;
-  statusEl.textContent = state.status;
-  statusEl.setAttribute("aria-label", "Status: " + state.status);
+let statusKey = state.status.toLowerCase().replace(/\s/g, "-");
+statusEl.className = "todo-card__status todo-card__status--" + statusKey;
+statusEl.textContent = state.status;
+statusEl.setAttribute("aria-label", "Status: " + state.status);
 
-  statusControl.value = state.status;
+// sync dropdown
+statusControl.value = state.status;
 
-  toggle.checked = state.status === "Done";
+// sync checkbox
+toggle.checked = state.status === "Done";
 
   // Handle timer based on done state
   if (state.status === "Done")  {
@@ -117,7 +119,7 @@ function stopTimer() {
 
 // ===== EVENT LISTENERS =====
 toggle.addEventListener("change", function () {
-  state.status = this.checked ? "Done" : "Pending";
+  state.status = this.checked ? "Done" : "In Progress";
   render();
 });
 
@@ -169,7 +171,8 @@ function applyEdits() {
   const newTitle = editTitleInput.value.trim();
   const newDesc = editDescInput.value.trim();
   const newPriority = editPrioritySelect.value;
-  const newDueDate = editDueDateInput.value ? new Date(editDueDateInput.value) : state.dueDate;
+  const newDueDate = editDueDateInput.value ? 
+  new Date(editDueDateInput.value) : state.dueDate;
 
   // Update DOM
   titleEl.textContent = newTitle || prevState.title;
@@ -207,11 +210,14 @@ deleteBtn.addEventListener("click", () => {
 // ===== STATUS CONTROL SYNC =====
 statusControl.addEventListener("change", function () {
   state.status = this.value;
+
+  // if user selects Done → sync checkbox
+  toggle.checked = this.value === "Done";
+
   render();
 });
 
 // ===== EXPAND / COLLAPSE =====
-const collapsibleSection = document.getElementById("collapsible-section");
 const expandBtn = document.getElementById("expand-toggle");
 
 // Start collapsed
@@ -222,17 +228,17 @@ collapsibleSection.style.transition = "max-height 0.3s ease";
 expandBtn.addEventListener("click", function () {
   const isExpanded = this.getAttribute("aria-expanded") === "true";
 
+  this.setAttribute("aria-expanded", String(!isExpanded));
+
   if (isExpanded) {
     collapsibleSection.style.maxHeight = "3.2em";
     collapsibleSection.style.overflow = "hidden";
-    this.setAttribute("aria-expanded", "false");
-    this.textContent = "Show more";
   } else {
     collapsibleSection.style.maxHeight = collapsibleSection.scrollHeight + "px";
     collapsibleSection.style.overflow = "visible";
-    this.setAttribute("aria-expanded", "true");
-    this.textContent = "Show less";
   }
+
+  this.textContent = isExpanded ? "Show more ▾" : "Show less ▴";
 });
 
 // ===== INIT =====

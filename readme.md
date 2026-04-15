@@ -1,15 +1,37 @@
-# Todo Card Project
-I built this accessible Todo Card as a Frontend Developer in training to practice semantic HTML and vanilla JavaScript state management. It's designed to be clean, responsive, and fully testable for the HNG Stage 0 task.
+# Advance Todo card 1a 
+I built this Advanced Todo Card as part of the HNG Stage 1a task, extending my Stage 0 implementation into a more interactive, stateful component.
+
+This version introduces editable content, synchronized status controls, expand/collapse behavior, and dynamic time tracking — all built using semantic HTML, CSS, and vanilla JavaScript.
 
 ## Key Features
-Semantic Structure: Used article, time, and proper ARIA labels to ensure full accessibility for screen readers.
+### Interactive Editing
+Users can edit the task title, description, priority, and due date through an inline edit form with Save and Cancel functionality.
 
-Logic: Managed state with plain JavaScript — a custom state object and render function replace React's useReducer to handle task completion and status updates.
+### Status Management
+Includes a synchronized system between:
+- Checkbox (mark complete)
+- Status display
+- Status dropdown (Pending, In Progress, Done)
 
-Real-time Tracking: Includes a dynamic countdown for task deadlines.
+### Dynamic Time Tracking
+- Displays real-time countdown (days, hours, minutes)
+- Updates every 30 seconds
+- Automatically shows "Overdue" when past due date
+- Stops updating when task is marked as completed
 
-Human-Centric Design: Styled with pure CSS and inline SVG icons for a professional, "non-AI" look.
+### Expand / Collapse Description
+Long descriptions are collapsed by default and can be expanded or collapsed using an accessible toggle button.
 
+### Accessibility (A11y)
+- Semantic HTML elements (`article`, `time`, `ul`)
+- ARIA attributes (`aria-live`, `aria-expanded`, `aria-controls`)
+- Proper label associations for all form inputs
+- Keyboard-friendly navigation flow
+
+### Visual State Feedback
+- Completed tasks show muted styling and strike-through
+- Priority levels visually distinct (Low, Medium, High)
+- Overdue tasks display a warning indicator
 ## How to Run Locally
 1. Clone the repository: git clone https://github.com/Sherifat-Aduku/hng-stage0-todo-card.git
 
@@ -20,11 +42,7 @@ Human-Centric Design: Styled with pure CSS and inline SVG icons for a profession
 ## Decisions Made
 State Management: I used a plain JavaScript state object with a render() function to handle task completion and status updates — keeping things predictable without a framework.
 
-Accessibility (A11y): I used semantic HTML tags like article, time, and ul to ensure the card is readable by screen readers.
-
 Iconography: I used inline SVGs instead of an external icon library to keep the project dependency-free.
-
-Visual Priority: I styled the "High" priority badge with a solid red fill to ensure immediate visibility for urgent tasks.
 
 ## Trade-offs
 No Framework: I chose vanilla HTML, CSS, and JavaScript over React to demonstrate my fundamental understanding of the DOM, state, and event handling without abstractions.
