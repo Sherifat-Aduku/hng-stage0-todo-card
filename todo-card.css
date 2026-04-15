@@ -311,6 +311,93 @@
   background: #d6a2a2;
 }
 
+.todo-card__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo-card__edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.todo-card__edit-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.todo-card__edit-input,
+.todo-card__edit-textarea,
+.todo-card__edit-select {
+  padding: 8px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #2d3748;
+  transition: border-color 0.2s;
+}
+
+.todo-card__edit-input:focus,
+.todo-card__edit-textarea:focus,
+.todo-card__edit-select:focus {
+  outline: none;
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.todo-card__edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.todo-card__btn--save {
+  background: #38a169;
+  color: white;
+  border: none;
+}
+
+.todo-card__btn--save:hover {
+  background: #2f855a;
+}
+
+.todo-card__btn--cancel {
+  background: #e2e8f0;
+  color: #4a5568;
+  border: none;
+}
+
+.todo-card__btn--cancel:hover {
+  background: #cbd5e0;
+}
+
+/* --- Overdue Indicator --- */
+.todo-card__overdue-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  animation: pulseOverdue 2s ease-in-out infinite;
+}
+
+@keyframes pulseOverdue {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+
 /* --- Responsive Breakpoints --- */
 @media (max-width: 520px) {
   .todo-card {
